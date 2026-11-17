@@ -52,7 +52,7 @@ db.close()
 Python API ReferenceMethodDescriptionIntDynamicEngine(storage_dir, max_ram_mb, secret_key, lib_path=None)Initializes the C++17 engine and recovers persistent disk indexes if present.put(key: str, data: bytes | str)Encrypts and stores data under key, spilling cold items to disk when max_ram_mb is reached.get(key: str) -> bytes | NoneRetrieves and decrypts data from RAM or cold disk storage (None if missing).delete(key: str) -> boolRemoves a key from active RAM and the disk index.stats() -> dictReturns ram_used_kb, ram_items, and disk_items.disk_stats() -> dictReturns active_kb, file_size_kb, and dead_space_kb.compact()Compacts the encrypted disk log to reclaim dead space from deleted or updated keys.scan_prefix(prefix, callback, contains_filter=None)Streams matching records directly from disk without polluting hot RAM.aggregate_double_prefix(prefix, value_offset=0)Computes count, sum, avg, min, and max over little-endian float64 payloads in C++.close()Flushes indexes to disk and releases C++ heap memory cleanly.Multi-Language Usage (Node.js & PHP)When installed system-wide via install.sh, the same C++ core (libinte.so) can be imported directly in Node.js (koffi) and PHP (FFI):Node.jsJavaScriptconst { IntDynamicEngine } = require('/opt/int-dynamic-engine/bindings/node/inte.js');
 
 const db = new IntDynamicEngine('/var/lib/int-engine/app', 16, 'your-master-secret-key');
-db.put('session:1', JSON.stringify({ user: 'Nikila', active: true }));
+db.put('session:1', JSON.stringify({ user: 'Akon', active: true }));
 console.log(db.get('session:1').toString('utf8'));
 console.log(db.stats());
 db.close();
